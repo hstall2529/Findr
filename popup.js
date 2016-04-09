@@ -90,9 +90,18 @@ var $error = $('#error');
 //   x.send();
 // }
 
-// function renderStatus(statusText) {
-//   document.getElementById('status').textContent = statusText;
-// }
+function renderStatus(statusText) {
+  document.getElementById('status').textContent = statusText;
+}
+
+function searchAgainstTags(searchText){
+  if($.cookie("imageTags") === undefined){   
+    //console.log("Not Ready");
+    $error.html("Scanning Images....");
+  }else{    
+    $error.html("");
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
 //   getCurrentTabUrl(function(url) {
@@ -126,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //setting your input text to the global Javascript Variable for every key press
   		inputTextValue = e.target.value;
   		renderStatus(inputTextValue);
+      searchAgainstTags(inputTextValue);
 	}
   });
-});
+// });
