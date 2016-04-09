@@ -97,9 +97,11 @@ function renderStatus(statusText) {
 function searchAgainstTags(searchText){
   if($.cookie("imageTags") === undefined){   
     //console.log("Not Ready");
-    $error.html("Scanning Images....");
+    $error.text("Scanning Images....");
   }else{    
-    $error.html("");
+    $error.text("");
+
+    
   }
 }
 
