@@ -14,9 +14,6 @@ for (var i in imageTags) {
    	  sources.push(src);
    }
 
-   sources.push(src);
-
-
 }
 
 function getMeta(url){
@@ -25,6 +22,7 @@ function getMeta(url){
         src  : url
     });
 }
+
 console.log(sources);
 console.log("test");
 
