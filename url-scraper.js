@@ -10,7 +10,7 @@ for (var i in imageTags) {
 
 function getMeta(url){
     $("<img/>",{
-        load : function(){ alert(this.width+' '+this.height); },
+        load : function(){ console.log(this.width+' '+this.height); },
         src  : url
     });
 }

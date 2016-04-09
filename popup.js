@@ -111,6 +111,7 @@ function searchAgainstTags(searchText){
 
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
+  	chrome.tabs.executeScript(null,{file:"js/jquery-1.11.3.min.js"});
   	chrome.tabs.executeScript(null, {file: "url-scraper.js"});
     // Put the image URL in Google search.
     //renderStatus('Performing Google Image search for ' + url);
