@@ -23,7 +23,9 @@ function getMeta(url){
     });
 }
 
-console.log(sources);
+setTimeout(function(){
+	console.log(sources);
+}, 3000);
 console.log("test");
 
 
