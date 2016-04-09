@@ -27,14 +27,16 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>     
+
     <script src="popup.js"></script>
   </head>
   <body>
     <div id="status"></div>
     <form>
       Find:<br>
-      <input type="text" name="searchField" autofocus><br>
+      <input type="text" name="searchField" id="search" autofocus><br>
     </form>
     <img id="image-result" hidden>
   </body>
