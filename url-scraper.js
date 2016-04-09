@@ -2,8 +2,18 @@ var imageTags = document.getElementsByTagName("img"); // Returns array of <img> 
 var authCode = "7bvWk1SFf2CBBn9R8c6KJ1P3ne0zre";
 var sources = [];
 for (var i in imageTags) {
+
+   var srcURL = imageTags[i]; 
+   srcURLWidth = srcURL.clientWidth;
+   srcURLHeight = srcURL.clientHeight;
+
    var src = imageTags[i].src;
-   sources.push(src);
+
+   var LIMITING_SIZE = 10;
+   if (typeof(srcURLWidth) != "undefined" && srcURLWidth > LIMITING_SIZE && srcURLHeight > LIMITING_SIZE) {
+   	  sources.push(src);
+   }
+
 }
 
 console.log(sources);
