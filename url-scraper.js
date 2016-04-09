@@ -10,7 +10,7 @@ console.log(sources);
 console.log("test");
 
 $.ajax({
-	url: "https://api.clarifai.com/v1/tag/?url=http://r.ddmcdn.com/s_f/o_1/cx_633/cy_0/cw_1725/ch_1725/w_720/APL/uploads/2014/11/too-cute-doggone-it-video-playlist.jpg",
+	url: "https://api.clarifai.com/v1/tag/",
 	beforeSend: function(xhr) { 
       xhr.setRequestHeader("Authorization", "Bearer " + authCode); 
     },
