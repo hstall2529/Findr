@@ -1,16 +1,5 @@
-// $('#search').keydown(function(){
-//   if(working){
 
-//   }else{
-//     $("#error").text("Scanning images...");
-//   }
-// })
-
-
-
-
-
-
+var $error = $('#error');
 
 
 // // Copyright (c) 2014 The Chromium Authors. All rights reserved.
@@ -103,6 +92,7 @@
 //   x.send();
 // }
 
+
 function renderStatus(statusText) {
   document.getElementById('status').textContent = statusText;
 }
@@ -129,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // }, function(errorMessage) {
     //   renderStatus('Cannot display image. ' + errorMessage);
     // });
+
 
     window.onkeyup = keyup;
 
