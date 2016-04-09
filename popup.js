@@ -114,5 +114,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // }, function(errorMessage) {
     //   renderStatus('Cannot display image. ' + errorMessage);
     // });
+
+    window.onkeyup = keyup;
+
+	//creates a global Javascript variable
+	var inputTextValue;
+
+	function keyup(e) {
+  //setting your input text to the global Javascript Variable for every key press
+  		inputTextValue = e.target.value;
+  		renderStatus(inputTextValue);
+	}
   });
 });
