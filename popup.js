@@ -1,8 +1,13 @@
-$('#search').keydown(function(){
+var $search = $('#search');
+var $error = $('#error');
+
+$search.change(function(){
+  console.log("keydown");
   if(working){
+    $error.text("");
 
   }else{
-    $("#error").text("Scanning images...");
+    $error.text("Scanning images...");
   }
 })
 
@@ -107,7 +112,7 @@ $('#search').keydown(function(){
 //   document.getElementById('status').textContent = statusText;
 // }
 
-// document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
 //   getCurrentTabUrl(function(url) {
 //     // Put the image URL in Google search.
 //     //renderStatus('Performing Google Image search for ' + url);
@@ -130,15 +135,15 @@ $('#search').keydown(function(){
 //     //   renderStatus('Cannot display image. ' + errorMessage);
 //     // });
 
-//     window.onkeyup = keyup;
+    window.onkeyup = keyup;
 
-// 	//creates a global Javascript variable
-// 	var inputTextValue;
+	//creates a global Javascript variable
+	var inputTextValue;
 
-// 	function keyup(e) {
-//   //setting your input text to the global Javascript Variable for every key press
-//   		inputTextValue = e.target.value;
-//   		renderStatus(inputTextValue);
-// 	}
-//   });
-// });
+	function keyup(e) {
+  //setting your input text to the global Javascript Variable for every key press
+  		inputTextValue = e.target.value;
+  		renderStatus(inputTextValue);
+	}
+  });
+});
