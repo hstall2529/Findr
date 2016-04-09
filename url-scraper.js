@@ -26,12 +26,13 @@ function getMeta(url){
 console.log(sources);
 console.log("test");
 
+
 $.ajax({
 	url: "https://api.clarifai.com/v1/tag/?url=http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg",
 	'headers': {
 		'Authorization': 'Bearer ' + authCode
     },
-    type: "GET",    
+    type: "POST",    
     success: function (data) {
     	console.log(data);
       $.cookie('imageTags', JSON.stringify(data), {expires: 7});
