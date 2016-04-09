@@ -14,8 +14,17 @@ for (var i in imageTags) {
    	  sources.push(src);
    }
 
+   sources.push(src);
+
+
 }
 
+function getMeta(url){
+    $("<img/>",{
+        load : function(){ console.log(this.width+' '+this.height); },
+        src  : url
+    });
+}
 console.log(sources);
 console.log("test");
 
