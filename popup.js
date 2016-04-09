@@ -102,9 +102,7 @@ function searchAgainstTags(searchText){
     //console.log("Not Ready");
     $error.text("Scanning Images....");
   }else{    
-    $error.text("");
-
-    
+    $error.text($.cookie("imageTags"));
   }
 }
 

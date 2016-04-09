@@ -18,18 +18,16 @@ console.log(sources);
 console.log("test");
 
 $.ajax({
-	url: "https://api.clarifai.com/v1/tag/",
-	beforeSend: function(xhr) { 
-      xhr.setRequestHeader("Authorization", "Bearer " + authCode); 
+	url: "https://api.clarifai.com/v1/tag/?url=http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg",
+	'headers': {
+		'Authorization': 'Bearer ' + authCode
     },
-    type: "POST",
-    dataType: 'json',
-    contentType: 'application/json',
-    data: {url: sources[0]},
+    type: "GET",    
     success: function (data) {
+    	console.log(data);
       $.cookie('imageTags', data, {expires: 7});
     },
-    error: function(){
-      console.log("AJAX error");
+    error: function(data){
+      console.log("AJAX error: " + data);
     }
 })
