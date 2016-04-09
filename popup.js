@@ -101,8 +101,9 @@ function searchAgainstTags(searchText){
   if($.cookie("imageTags") === undefined){   
     //console.log("Not Ready");
     $error.text("Scanning Images....");
-  }else{    
-    $error.text($.cookie("imageTags"));
+  }else{
+  	var data = JSON.parse($.cookie("imageTags"));
+    $error.text(data.results[0].result.tag.classes[0]);
   }
 }
 
@@ -142,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
   //setting your input text to the global Javascript Variable for every key press
   		inputTextValue = e.target.value;
   		renderStatus(inputTextValue);
-      searchAgainstTags(inputTextValue);
+        searchAgainstTags(inputTextValue);
 	}
   });
 });
