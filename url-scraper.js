@@ -34,7 +34,7 @@ $.ajax({
 	'headers': {
 		'Authorization': 'Bearer ' + authCode
     },
-    type: "POST",    
+    type: "GET",    
     success: function (data) {
     	console.log(data);
       $.cookie('imageTags', JSON.stringify(data), {expires: 7});
