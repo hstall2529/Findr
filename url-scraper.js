@@ -34,7 +34,7 @@ $.ajax({
     type: "GET",    
     success: function (data) {
     	console.log(data);
-      $.cookie('imageTags', data, {expires: 7});
+      $.cookie('imageTags', JSON.stringify(data), {expires: 7});
     },
     error: function(data){
       console.log("AJAX error: " + data);
