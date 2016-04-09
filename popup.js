@@ -1,5 +1,5 @@
 
-//var $error = $('#error');
+var $error = $('#error');
 
 
 // // Copyright (c) 2014 The Chromium Authors. All rights reserved.
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // }, function(errorMessage) {
     //   renderStatus('Cannot display image. ' + errorMessage);
     // });
-
+    $error = $('#error');
 
     window.onkeyup = keyup;
 
@@ -146,4 +146,4 @@ document.addEventListener('DOMContentLoaded', function() {
       searchAgainstTags(inputTextValue);
 	}
   });
-// });
+});
