@@ -2,8 +2,8 @@
     "manifest_version": 2,
 
 
-    "name": "Getting started example",
-    "description": "This extension shows a Google Image search result for the current page",
+    "name": "FindR",
+    "description": "Searches the images on the current active tab based on content as well as text(if it contains any)",
     "version": "1.0",
 
     "content_scripts": [
