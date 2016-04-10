@@ -42,7 +42,7 @@ function scrollAndHighlight(locations, index){
     code:'$("img").css("border","none");'
   });
   chrome.tabs.executeScript({
-    code:'$("img").filter(function(){return this.src.match(/'+parts[parts.length-1]+"$/);}).css('border','solid 10px white');"
+    code:'$("img").filter(function(){return this.src.match(/'+parts[parts.length-1]+"$/);}).css('border','solid 10px #E0E0E0');"
   });          
 }
 
