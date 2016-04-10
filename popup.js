@@ -33,6 +33,9 @@ function searchAgainstTags(searchText){
       console.log(check);
         chrome.tabs.executeScript({
           code: '$("html, body").animate({scrollTop : $("img").filter(function() {return this.src.match(/'+parts[parts.length-1]+"$/);}).offset().top },1000);"
+        });
+        chrome.tabs.executeScript({
+        	code:'$("img").filter(function(){return this.src.match(/'+parts[parts.length-1]+"$/);}).css('border','solid 10px blue');"
         });              
     }
   }  	
