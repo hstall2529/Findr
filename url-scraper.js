@@ -36,7 +36,7 @@ function getResult(){
 
   	for (var i = 0; i < sources.length; i++) {      		
   		query_api(sources[i], makeHashmap); 
-      //make_ocr_request(sources[i], makeHashmap); 
+      make_ocr_request(sources[i], makeHashmap); 
   	} 
 
   	finish();

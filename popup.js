@@ -19,29 +19,17 @@ function searchAgainstTags(searchText){
   }else{	
     var check = tags[searchText];        
     if(check === undefined){
-      $status.text("0");    
+      $status.text(" 0 ");    
     }else{      
       found = check;
       foundIndex = 0;      
-      scrollAndHighlight(check, foundIndex);
-      
-      var parts = check[0].split("/");
-      console.log(check);
-        chrome.tabs.executeScript({
-          code: '$("html, body").animate({scrollTop : $("img").filter(function() {return this.src.match(/'+parts[parts.length-1]+"$/);}).offset().top },1000);"
-        });
-        chrome.tabs.executeScript({
-        	code:'$("img").css("border","none");'
-        });
-        chrome.tabs.executeScript({
-        	code:'$("img").filter(function(){return this.src.match(/'+parts[parts.length-1]+"$/);}).css('border','solid 10px blue');"
-        });              
+      scrollAndHighlight(check, foundIndex);            
     }
   }  	
 }
 
 function scrollAndHighlight(locations, index){
-  $status.text((index+1)+": "+locations.length);
+  $status.text(" " + (index+1)+": "+locations.length + " ");
   var parts = locations[index].split("/");
   console.log("Found images: ");
   console.log(locations);
@@ -49,8 +37,11 @@ function scrollAndHighlight(locations, index){
     code: '$("html, body").animate({scrollTop : $("img").filter(function() {return this.src.match(/'+parts[parts.length-1]+"$/);}).offset().top },1000);"
   });
   chrome.tabs.executeScript({
+    code:'$("img").css("border","none");'
+  });
+  chrome.tabs.executeScript({
     code:'$("img").filter(function(){return this.src.match(/'+parts[parts.length-1]+"$/);}).css('border','solid 10px blue');"
-  });              
+  });          
 }
 
 
