@@ -52,7 +52,7 @@ if($.cookie("imageTags") != undefined){
 	})	
 }
 
-<<<<<<< HEAD
+
 console.log(sources);
 console.log("test");
 
