@@ -42,6 +42,7 @@ if($.cookie("imageTags") != undefined){
 
 
 
+
 function query_api(url) {
 
   $.ajax({
