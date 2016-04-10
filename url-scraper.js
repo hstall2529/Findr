@@ -3,7 +3,7 @@ var imageTags = document.getElementsByTagName("img"); // Returns array of <img> 
 var authCode = "7bvWk1SFf2CBBn9R8c6KJ1P3ne0zre";
 var sources = [];
 var result;
-var results = [];
+var results = {};
 
 if($.cookie("imageTags") != undefined){		
 	result = $.cookie("imageTags");
@@ -27,14 +27,19 @@ function getResult(){
 	}  
 
   	for (var i = 0; i < sources.length; i++) {      		
-  		query_api(sources[i], appendResult);  		
+  		query_api(sources[i], makeHashmap);  		
   	} 
 
   	finish();
 }
 
-function appendResult(res, done) {	
-  	results.push(res);
+function makeHashmap(url, hash) {			
+	console.log(hash);
+	for (var i = 0; i < hash.length; i++) {
+		if(results[hash[i]] === undefined)
+			results[hash[i]] = [];
+		results[hash[i]].push(url);
+	}  	
   	console.log(results);	
 }
 
@@ -58,8 +63,8 @@ function query_api(url, callback) {
       type: "GET",  
       async: false,  
       success: function (data) {
-        console.log(data);               
-        callback(data);
+      	var hash = data.results[0].result.tag.classes;      	              
+        callback(url, hash);
       },
       error: function(data){
         console.log("AJAX error: " + data);        
