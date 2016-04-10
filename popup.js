@@ -7,35 +7,33 @@ function renderStatus(statusText) {
 }
 
 function searchAgainstTags(searchText){
+  console.log(tags);
   if(tags === undefined){   
+    $error.text("Scanning Images....");
+
     chrome.tabs.executeScript(null, {file:"js/jquery-1.11.3.min.js"});
     chrome.tabs.executeScript(null, {file:"js/jquery.cookie.js"});
     chrome.tabs.executeScript(null, {file:"url-scraper.js"}, function(data){
       console.log(data);
       tags = JSON.parse(data);
 
-      url = tags.results[0].url;
-      //url = url.replace("//","\\/\\/");
-      tags = tags.results[0].result.tag.classes;
-
-    });
-        
-    $error.text("Scanning Images....");
+      // url = tags.results[0].url;
+      // //url = url.replace("//","\\/\\/");
+      // tags = tags.results[0].result.tag.classes;
+      searchAgainstTags(searchText);
+    });          
   }else{	
-  	for (var i =0; i<tags.length;i++){
-  		if (searchText === tags[i] ){
-  			$error.text("Found!");
-  			//console.log(url);
-  			chrome.tabs.executeScript({
-    			code: '$("html, body").animate({scrollTop : $("img[src$='+"'"+url+"'"+']").offset().top },1000);'
-  			});
-  			break;
-  		}
-  		else{
-  			$error.text(searchText);
-  		}
-  	}
-}
+    var check = tags[searchText];        
+    if(check === undefined){
+      $error.text("Nothing Found");
+    }else{
+      $error.text("Found!");
+      console.log(check);
+        chrome.tabs.executeScript({
+          code: '$("html, body").animate({scrollTop : $("img[src$='+"'"+check[0]+"'"+']").offset().top },1000);'
+        });              
+    }
+  }  	
 }
 
 

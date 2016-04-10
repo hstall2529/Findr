@@ -34,13 +34,13 @@ function getResult(){
 }
 
 function makeHashmap(url, hash) {			
-	console.log(hash);
+	//console.log(hash);
 	for (var i = 0; i < hash.length; i++) {
 		if(results[hash[i]] === undefined)
 			results[hash[i]] = [];
 		results[hash[i]].push(url);
 	}  	
-  	console.log(results);	
+  	//console.log(results);	
 }
 
 
@@ -48,7 +48,7 @@ function finish(){
 	if(result == undefined)
 		result = JSON.stringify(results);
 	console.log("finish");
-	console.log(result);
+	//console.log(result);
 	$.cookie("imageTags", result);
 }
 
