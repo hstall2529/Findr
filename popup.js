@@ -13,12 +13,21 @@ function searchAgainstTags(searchText){
     chrome.tabs.executeScript(null, {file:"url-scraper.js"}, function(data){
       console.log(data);
       tags = JSON.parse(data);
+      tags = tags.results[0].result.tag.classes;
     });
         
     $error.text("Scanning Images....");
-  }else{
-  	$error.text(tags);
-    
+  }else{	
+  	for (var i =0; i<tags.length;i++){
+  		if (searchText === tags[i] ){
+  			$error.text("Found!");
+  			chrome.tabs.executeScript(null, {file:"scroll.js"});
+  			break;
+  		}
+  		else{
+  			$error.text(searchText);
+  		}
+  	}
 }
 }
 
@@ -33,6 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
   //setting your input text to the global Javascript Variable for every key press
   		inputTextValue = e.target.value;
   		renderStatus(inputTextValue);
-      searchAgainstTags(inputTextValue);
+      	searchAgainstTags(inputTextValue);
 	}  
 });
