@@ -28,9 +28,10 @@ function searchAgainstTags(searchText){
       $error.text("Nothing Found");
     }else{
       $error.text("Found!");
+      var parts = check[0].split("/");
       console.log(check);
         chrome.tabs.executeScript({
-          code: '$("html, body").animate({scrollTop : $("img[src$='+"'"+check[0]+"'"+']").offset().top },1000);'
+          code: '$("html, body").animate({scrollTop : $("img[src$='+"'"+parts[parts.length-1]+"'"+'] || img[src$='+"'"+parts[parts.length-2]+"/"+parts[parts.length-1]+"'"+']").offset().top },1000);'
         });              
     }
   }  	
