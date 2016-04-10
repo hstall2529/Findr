@@ -31,8 +31,10 @@ function searchAgainstTags(searchText){
         check = true;
 
         if(found.indexOf(tags[hashes[i]][0]) == -1){
-          found.push(tags[hashes[i]][0]);        
-          foundHash.push(hashes[i]);
+          for(var j=0; j<tags[hashes[i]].length; j++){
+            found.push(tags[hashes[i]][j]);
+            foundHash.push(hashes[i]);
+          }                 
         }
       }
     }
