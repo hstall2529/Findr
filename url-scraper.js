@@ -36,7 +36,9 @@ if($.cookie("imageTags") != undefined){
 	console.log("test");
 
   for (var i = 0; i < imageTags.length; i++) {
-    query_api(imageTags[i], appendResult);
+    if (imageTags[i].clientWidth > LIMITING_SIZE && imageTags[i].clientHeight > LIMITING_SIZE) {
+      query_api(imageTags[i], appendResult);
+    }
   }
 
 
