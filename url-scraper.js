@@ -78,7 +78,7 @@ function query_api(url, callback) {
 
 }
 
-function make_ocr_request(callback) {
+function make_ocr_request(callback, url) {
   $.ajax({
           url: "https://api.projectoxford.ai/vision/v1.0/ocr?" + "language=unk&detectOrientation=true",
           beforeSend: function(xhrObj){
@@ -89,7 +89,7 @@ function make_ocr_request(callback) {
           },
           type: "POST",
           // Request body
-          data: "{'Url':'https://www.google.com/edu/partners/img/google-edu-partner.png'}",
+          data: "{'Url': " + url,
         })
         .done(function(data) {
             console.log(data);
