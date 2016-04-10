@@ -1,5 +1,6 @@
 var $error = $('#error');
 var tags;
+var inputTextValue;
 
 /**
  * Get the current URL.
@@ -69,9 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
     $error = $('#error');
 
     window.onkeyup = keyup;
-
-	//creates a global Javascript variable
-	var inputTextValue;
 
 	function keyup(e) {
   //setting your input text to the global Javascript Variable for every key press
