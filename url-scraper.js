@@ -38,18 +38,21 @@ function getResult(){
 
   	for (var i = 0; i < sources.length; i++) {      		
   		query_api(sources[i], makeHashmap); 
-      //make_ocr_request(sources[i], makeHashmap); 
+      	make_ocr_request(sources[i], makeHashmap); 
   	} 
 
   	finish();
 }
 
 function makeHashmap(url, hash) {			
-	//console.log(hash);
+	//console.log(hash);	
 	for (var i = 0; i < hash.length; i++) {
-		if(results[hash[i].toLowerCase()] === undefined)
-			results[hash[i].toLowerCase()] = [];
-		results[hash[i].toLowerCase()].push(url);
+		var hashLower = hash[i].toLowerCase();
+		if(results[hashLower] === undefined)
+			results[hashLower] = [];		
+
+		if(results[hashLower].indexOf(url) == -1)
+			results[hashLower].push(url);		
 	}  	
 
   	console.log("resulting hashmap contains:");
