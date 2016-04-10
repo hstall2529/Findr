@@ -3,11 +3,12 @@ var imageTags = document.getElementsByTagName("img"); // Returns array of <img> 
 var authCode = "7bvWk1SFf2CBBn9R8c6KJ1P3ne0zre";
 var sources = [];
 var result;
+var results = [];
 
 if($.cookie("imageTags") != undefined){		
 	result = $.cookie("imageTags");
 }else{		
-	for (var i in imageTags) {
+	for (var i = 0; i < imageTags.length; i++) {
 
 	   var srcURL = imageTags[i]; 
 	   srcURLWidth = srcURL.clientWidth;
@@ -34,8 +35,8 @@ if($.cookie("imageTags") != undefined){
 	}, 3000);
 	console.log("test");
 
-  for (var i in imageTags) {
-    console.log(query_api(imageTags[i]));
+  for (var i = 0; i < imageTags.length; i++) {
+    results.push(query_api(imageTags[i]));
   }
 	
 }
