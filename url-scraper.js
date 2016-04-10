@@ -32,7 +32,7 @@ function getResult(){
 	}  
 
   	for (var i = 0; i < sources.length; i++) {      		
-  		query_api(sources[i], makeHashmap);  		
+  		query_api(sources[i], makeHashmap);  
   	} 
 
   	finish();
@@ -101,10 +101,15 @@ function make_ocr_request(callback, url) {
                 even_more_parsed += " " + parsed_JSON[i].text;
             }
             even_more_parsed = even_more_parsed.trim();
+            var arr = even_more_parsed.split(' ');
             console.log("parsed JSON : " + even_more_parsed);
+            console.log("arr to push to hashmap : " + arr);
+            console.log("HTTP request for OCR worked");
+            makeHashmap(url, arr);
+            
 
             //var parsedata = data.
-            alert("success");
+            //alert("success");
         })
         .fail(function() {
             alert("error");
