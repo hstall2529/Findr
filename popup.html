@@ -9,7 +9,7 @@
     <title>Getting Started Extension's Popup</title>
     <style>
       body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;        
         font-size: 100%;
       }
       #status {
@@ -19,7 +19,29 @@
         overflow: hidden;
         max-width: 400px;
       }
+      .row{                                                        
+        float: left;   
+        width: 17em;          
+      }
+      .row > input{
+        float: left;
+        width: 16em;
+      }
+      .row > button{
+        width: 2em;
+        position: relative;
+        display: inline-block;                  
+        float: left;        
+      }
+      .row > p{
+        position: absolute;
+        right: 4em;
+        top: -7px;
+        background-color: #ff3333;
+        height: 1.2em;
+      }
     </style>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
@@ -28,14 +50,16 @@
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->     
   </head>
-  <body>
-    <div id="status"></div>
-    <form>
-      Find:<br>
-      <input type="text" name="searchField" id="search" autofocus><br>
+  <body>    
+    <form>      
+    <div class="row">
+      <input type="text" name="searchField" id="search" autofocus autocomplete="false">
+      <p id="status"></p>
+      <button id="incr"><i class="fa fa-chevron-down"></i></button>
+      <button id="decr"> <i class="fa fa-chevron-up"></i></button>
+      </div><br>
     </form>
-    <img id="image-result" hidden>
-    <p id="error"></p>
+    <img id="image-result" hidden>    
   </body>
 
   <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>   

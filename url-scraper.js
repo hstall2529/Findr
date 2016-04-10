@@ -11,8 +11,8 @@ var results = {};
 
 if(localStorage.imageTag != undefined){		
 	result = localStorage.imageTag;
-	console.log("Cached result is ");
-	console.log(result);
+	//console.log("Cached result is ");
+	//console.log(result);
 }else{		
 	getResult(finish);	
 }
@@ -36,7 +36,7 @@ function getResult(){
 
   	for (var i = 0; i < sources.length; i++) {      		
   		query_api(sources[i], makeHashmap); 
-      make_ocr_request(sources[i], makeHashmap); 
+      //make_ocr_request(sources[i], makeHashmap); 
   	} 
 
   	finish();
