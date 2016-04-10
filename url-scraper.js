@@ -13,6 +13,7 @@ if(localStorage.imageTag != undefined){
 	result = localStorage.imageTag;
 	//console.log("Cached result is ");
 	//console.log(result);
+	//console.log(Object.keys(JSON.parse(result)));
 }else{		
 	getResult(finish);	
 }
@@ -46,7 +47,7 @@ function getResult(){
 
 function makeHashmap(url, hash) {			
 	//console.log(hash);	
-	for (var i = 0; i < hash.length; i++) {
+	for (var i = 0; i < hash.length; i++) {		
 		var hashLower = hash[i].toLowerCase();
 		if(results[hashLower] === undefined)
 			results[hashLower] = [];		
