@@ -18,11 +18,13 @@ function searchAgainstTags(searchText){
     });          
   }else{	
     var check = tags[searchText];        
+    foundIndex = 0;    
+
     if(check === undefined){
-      $status.text(" 0 ");    
+      found = [];
+      $status.text(" 0 ");       
     }else{      
-      found = check;
-      foundIndex = 0;      
+      found = check;          
       scrollAndHighlight(check, foundIndex);            
     }
   }  	

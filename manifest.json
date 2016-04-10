@@ -3,7 +3,7 @@
 
 
     "name": "FindR",
-    "description": "Searches the images on the current active tab based on content as well as text(if it contains any)",
+    "description": "Searches the images on the current active tab based on content as well as text (if it contains any)",
     "version": "1.0",
 
     
