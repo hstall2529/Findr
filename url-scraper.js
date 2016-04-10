@@ -8,6 +8,10 @@ var results = [];
 if($.cookie("imageTags") != undefined){		
 	result = $.cookie("imageTags");
 }else{		
+	getResult(finish);	
+}
+
+function getResult(){
 	for (var i = 0; i < imageTags.length; i++) {
 
 	   var srcURL = imageTags[i]; 
@@ -19,37 +23,29 @@ if($.cookie("imageTags") != undefined){
 	   var LIMITING_SIZE = 10;
 	   if (typeof(srcURLWidth) != "undefined" && srcURLWidth > LIMITING_SIZE && srcURLHeight > LIMITING_SIZE) {
 	   	  sources.push(src);
-	   }
+	   }	   
+	}  
 
-	}
-  console.log("runs");
-	// function getMeta(url){
-	//     $("<img/>",{
-	//         load : function(){ console.log(this.width+' '+this.height); },
-	//         src  : url
-	//     });
-	// }
+  	for (var i = 0; i < sources.length; i++) {      		
+  		query_api(sources[i], appendResult);  		
+  	} 
 
-	setTimeout(function(){
-		console.log(sources);
-	}, 3000);
-	console.log("test");
-
-  for (var i = 0; i < sources.length; i++) {
-    
-    query_api(sources[i], appendResult);
-    
-  }
-
-
-	
+  	finish();
 }
 
-function appendResult(res) {
-  results.push(res);
-  console.log(results);
+function appendResult(res, done) {	
+  	results.push(res);
+  	console.log(results);	
 }
 
+
+function finish(){	
+	if(result == undefined)
+		result = JSON.stringify(results);
+	console.log("finish");
+	console.log(result);
+	$.cookie("imageTags", result);
+}
 
 
 
@@ -59,15 +55,14 @@ function query_api(url, callback) {
     'headers': {
       'Authorization': 'Bearer ' + authCode
       },
-      type: "GET",    
+      type: "GET",  
+      async: false,  
       success: function (data) {
-        console.log(data);
-        $.cookie('imageTags', JSON.stringify(data));
-        result = JSON.stringify(data);
-        callback(result);
+        console.log(data);               
+        callback(data);
       },
       error: function(data){
-        console.log("AJAX error: " + data);
+        console.log("AJAX error: " + data);        
       }
   }); 
 
