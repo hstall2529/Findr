@@ -26,6 +26,7 @@ function searchAgainstTags(searchText){
     var check = tags[searchText];        
     if(check === undefined){
       $error.text("Nothing Found");
+      console.log(data);
     }else{
       $error.text("Found!");
       var parts = check[0].split("/");

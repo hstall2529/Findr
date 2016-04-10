@@ -1,6 +1,6 @@
 var imageTags = document.getElementsByTagName("img"); // Returns array of <img> DOM nodes
 //var $imageTags = $('img');
-var authCode = "7bvWk1SFf2CBBn9R8c6KJ1P3ne0zre";
+var authCode = "umUFgMhzz2cMpj6TexWSdmgzO6FhcY";
 var sources = [];
 var result;
 var results = {};
