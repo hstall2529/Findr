@@ -93,6 +93,17 @@ function make_ocr_request(callback, url) {
         })
         .done(function(data) {
             console.log(data);
+
+            console.log(data);
+            var parsed_JSON = data.regions[0].lines[0].words;
+            var even_more_parsed = "";
+            for (var i = 0; i < parsed_JSON.length; i++) {
+                even_more_parsed += " " + parsed_JSON[i].text;
+            }
+            even_more_parsed = even_more_parsed.trim();
+            console.log("parsed JSON : " + even_more_parsed);
+
+            //var parsedata = data.
             alert("success");
         })
         .fail(function() {
