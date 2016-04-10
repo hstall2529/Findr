@@ -1,8 +1,13 @@
 var key = "";
 
+var json = '{"requests":[{"image":{"content":'+ getBase64Image(img) +'},"features":[{"type":"LABEL_DETECTION","maxResults":5}]}]}'
+
 $.ajax({
     url: "https://vision.googleapis.com/v1/images:annotate?key=" + key,    
     type: "GET",    
+    dataType: 'json',
+    contentType: 'application/json',
+    data: {data: json},
     success: function (data) {
         console.log(data);
         $.cookie('imageTags', JSON.stringify(data));

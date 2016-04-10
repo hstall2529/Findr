@@ -52,8 +52,8 @@ function appendResult(res) {
 
 
 
-function query_api(url, callback) {
 
+function query_api(url, callback) {
   $.ajax({
     url: "https://api.clarifai.com/v1/tag/?url=http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg",
     'headers': {
