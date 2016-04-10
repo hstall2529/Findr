@@ -103,8 +103,11 @@ function searchAgainstTags(searchText){
     $error.text("Scanning Images....");
   }else{
   	var data = JSON.parse($.cookie("imageTags"));
-    $error.text(data.results[0].result.tag.classes[0]);
-  }
+    var url = data.results[0].url;
+    $error.text(url);
+    chrome.tabs.executeScript(null,{file:"scroll.js"});
+    
+}
 }
 
 
@@ -112,26 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
   	chrome.tabs.executeScript(null,{file:"js/jquery-1.11.3.min.js"});
   	chrome.tabs.executeScript(null, {file: "url-scraper.js"});
-    // Put the image URL in Google search.
-    //renderStatus('Performing Google Image search for ' + url);
-
-    // getImageUrl(url, function(imageUrl, width, height) {
-
-    //   renderStatus('Search term: ' + url + '\n' +
-    //       'Google image search result: ' + imageUrl);
-    //   var imageResult = document.getElementById('image-result');
-    //   // Explicitly set the width/height to minimize the number of reflows. For
-    //   // a single image, this does not matter, but if you're going to embed
-    //   // multiple external images in your page, then the absence of width/height
-    //   // attributes causes the popup to resize multiple times.
-    //   imageResult.width = width;
-    //   imageResult.height = height;
-    //   imageResult.src = imageUrl;
-    //   imageResult.hidden = false;
-
-    // }, function(errorMessage) {
-    //   renderStatus('Cannot display image. ' + errorMessage);
-    // });
+   
     $error = $('#error');
 
     window.onkeyup = keyup;
