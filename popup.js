@@ -13,6 +13,8 @@ function searchAgainstTags(searchText){
     chrome.tabs.executeScript(null, {file:"url-scraper.js"}, function(data){
       console.log(data);
       tags = JSON.parse(data);
+      url = tags.results[0].url;
+      //url = url.replace("//","\\/\\/");
       tags = tags.results[0].result.tag.classes;
     });
         
@@ -21,7 +23,10 @@ function searchAgainstTags(searchText){
   	for (var i =0; i<tags.length;i++){
   		if (searchText === tags[i] ){
   			$error.text("Found!");
-  			chrome.tabs.executeScript(null, {file:"scroll.js"});
+  			//console.log(url);
+  			chrome.tabs.executeScript({
+    			code: '$("html, body").animate({scrollTop : $("img[src$='+"'"+url+"'"+']").offset().top },1000);'
+  			});
   			break;
   		}
   		else{
