@@ -1,5 +1,5 @@
-var imageTags = document.getElementsByTagName("img"); // Returns array of <img> DOM nodes
-//var $imageTags = $('img');
+//var imageTags = document.getElementsByTagName("img"); // Returns array of <img> DOM nodes
+var $imageTags = $('img:visible');
 
 //var authCode = "7bvWk1SFf2CBBn9R8c6KJ1P3ne0zre";
 var authCode =  "umUFgMhzz2cMpj6TexWSdmgzO6FhcY";
@@ -18,36 +18,41 @@ if(localStorage.imageTag != undefined){
 }
 
 function getResult(){
-	for (var i = 0; i < imageTags.length; i++) {
+	for (var i = 0; i < $imageTags.length; i++) {		
 
-	   var srcURL = imageTags[i]; 
+	   var srcURL = $imageTags[i]; 
 	   srcURLWidth = srcURL.clientWidth;
 	   srcURLHeight = srcURL.clientHeight;
+	   //console.log("width: " + srcURLWidth);
 
-	   var src = imageTags[i].src;
+	   var src = $imageTags[i].src;	   
 
 	   var LIMITING_SIZE_MIN = 40;
      var LIMITING_SIZE_MAX = 3200;
 	   if (typeof(srcURLWidth) != "undefined" && srcURLWidth > LIMITING_SIZE_MIN && srcURLHeight > LIMITING_SIZE_MIN
                                             && srcURLWidth < LIMITING_SIZE_MAX && srcURLHeight < LIMITING_SIZE_MAX) {
+	   		//console.log("result: " + src);
 	   	  sources.push(src);
 	   }	   
 	}  
 
   	for (var i = 0; i < sources.length; i++) {      		
   		query_api(sources[i], makeHashmap); 
-      make_ocr_request(sources[i], makeHashmap); 
+      	make_ocr_request(sources[i], makeHashmap); 
   	} 
 
   	finish();
 }
 
 function makeHashmap(url, hash) {			
-	//console.log(hash);
+	//console.log(hash);	
 	for (var i = 0; i < hash.length; i++) {
-		if(results[hash[i].toLowerCase()] === undefined)
-			results[hash[i].toLowerCase()] = [];
-		results[hash[i].toLowerCase()].push(url);
+		var hashLower = hash[i].toLowerCase();
+		if(results[hashLower] === undefined)
+			results[hashLower] = [];		
+
+		if(results[hashLower].indexOf(url) == -1)
+			results[hashLower].push(url);		
 	}  	
 
   	console.log("resulting hashmap contains:");
