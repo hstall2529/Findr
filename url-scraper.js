@@ -1,8 +1,8 @@
 var imageTags = document.getElementsByTagName("img"); // Returns array of <img> DOM nodes
 //var $imageTags = $('img');
 
-var authCode = "7bvWk1SFf2CBBn9R8c6KJ1P3ne0zre";
-//patrick's access token: umUFgMhzz2cMpj6TexWSdmgzO6FhcY
+//var authCode = "7bvWk1SFf2CBBn9R8c6KJ1P3ne0zre";
+var authCode =  "umUFgMhzz2cMpj6TexWSdmgzO6FhcY";
 //random guy on github's access token: 1INOKIFjD8v6Lv1Swf2qgdOAWmBNhC
 
 var sources = [];
@@ -44,7 +44,7 @@ function makeHashmap(url, hash) {
 	//console.log(hash);
 	for (var i = 0; i < hash.length; i++) {
 		if(results[hash[i]] === undefined)
-			results[hash[i]] = [];
+			results[hash[i].toLowerCase()] = [];
 		results[hash[i]].push(url);
 	}  	
 
