@@ -20,8 +20,10 @@ function getResult(){
 
 	   var src = imageTags[i].src;
 
-	   var LIMITING_SIZE = 10;
-	   if (typeof(srcURLWidth) != "undefined" && srcURLWidth > LIMITING_SIZE && srcURLHeight > LIMITING_SIZE) {
+	   var LIMITING_SIZE_MIN = 40;
+     var LIMITING_SIZE_MAX = 3200;
+	   if (typeof(srcURLWidth) != "undefined" && srcURLWidth > LIMITING_SIZE_MIN && srcURLHeight > LIMITING_SIZE_MIN
+                                            && srcURLWidth < LIMITING_SIZE_MAX && srcURLHeight < LIMITING_SIZE_MAX) {
 	   	  sources.push(src);
 	   }	   
 	}  
