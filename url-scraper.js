@@ -33,7 +33,8 @@ function getResult(){
 	}  
 
   	for (var i = 0; i < sources.length; i++) {      		
-  		query_api(sources[i], makeHashmap);  
+  		query_api(sources[i], makeHashmap); 
+      make_ocr_request(sources[i], makeHashmap); 
   	} 
 
   	finish();
@@ -46,7 +47,9 @@ function makeHashmap(url, hash) {
 			results[hash[i]] = [];
 		results[hash[i]].push(url);
 	}  	
-  	//console.log(results);	
+
+  	console.log("resulting hashmap contains:");
+    console.log (results);	
 }
 
 
@@ -79,7 +82,7 @@ function query_api(url, callback) {
 
 }
 
-function make_ocr_request(callback, url) {
+function make_ocr_request(url, callback) {
   $.ajax({
           url: "https://api.projectoxford.ai/vision/v1.0/ocr?" + "language=unk&detectOrientation=true",
           beforeSend: function(xhrObj){
@@ -89,32 +92,40 @@ function make_ocr_request(callback, url) {
              // xhrObj.setRequestHeader("Access-Control-Allow-Origin": "http://siteA.com");
           },
           type: "POST",
+          async: false,
           // Request body
-          data: "{'Url': " + url,
+          data: "{'Url': '" + url + "'}",
         })
         .done(function(data) {
+            
+            console.log("the data returned from the ocr reques was");
             console.log(data);
 
-            console.log(data);
-            var parsed_JSON = data.regions[0].lines[0].words;
+            //console.log(data);
+            var parsed_JSON = data.regions[0].lines;
+            console.log("parsed-json is this long " + parsed_JSON.length);
             var even_more_parsed = "";
-            for (var i = 0; i < parsed_JSON.length; i++) {
-                even_more_parsed += " " + parsed_JSON[i].text;
-            }
+            for (var j = 0; j < parsed_JSON.length; j++) {
+
+              console.log("outer loops ran");
+
+                for (var i = 0; i < parsed_JSON[j].words.length; i++) {
+                  console.log("each word processed was " + parsed_JSON[j].words[i].text);
+                    even_more_parsed += " " + parsed_JSON[j].words[i].text;
+                }
+             }
             even_more_parsed = even_more_parsed.trim();
             var arr = even_more_parsed.split(' ');
             console.log("parsed JSON : " + even_more_parsed);
             console.log("arr to push to hashmap : " + arr);
             console.log("HTTP request for OCR worked");
-            makeHashmap(url, arr);
+            callback(url, arr);
             
 
             //var parsedata = data.
             //alert("success");
-        })
-        .fail(function() {
-            alert("error");
         });
+        
 
 
 }
