@@ -48,7 +48,7 @@ function searchAgainstTags(searchText){
     chrome.tabs.executeScript(null, {file:"js/jquery.cookie.js"});
     chrome.tabs.executeScript(null, {file:"url-scraper.js"}, function(data){
       console.log(data);
-      tags = data;
+      tags = JSON.parse(data);
     });
         
     $error.text("Scanning Images....");
