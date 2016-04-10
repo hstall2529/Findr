@@ -1,6 +1,5 @@
-
 var $error = $('#error');
-
+var tags;
 
 // // Copyright (c) 2014 The Chromium Authors. All rights reserved.
 // // Use of this source code is governed by a BSD-style license that can be
@@ -98,8 +97,14 @@ function renderStatus(statusText) {
 }
 
 function searchAgainstTags(searchText){
-  if($.cookie("imageTags") === undefined){   
-    //console.log("Not Ready");
+  if(tags === undefined){   
+    chrome.tabs.executeScript(null, {file:"js/jquery-1.11.3.min.js"});
+    chrome.tabs.executeScript(null, {file:"js/jquery.cookie.js"});
+    chrome.tabs.executeScript(null, {file:"url-scraper.js"}, function(data){
+      console.log(data);
+      tags = data;
+    });
+        
     $error.text("Scanning Images....");
   }else{
   	var data = JSON.parse($.cookie("imageTags"));
@@ -112,10 +117,12 @@ function searchAgainstTags(searchText){
 
 
 document.addEventListener('DOMContentLoaded', function() {
+
   getCurrentTabUrl(function(url) {
   	chrome.tabs.executeScript(null,{file:"js/jquery-1.11.3.min.js"});
   	chrome.tabs.executeScript(null, {file: "url-scraper.js"});
    
+
     $error = $('#error');
 
     window.onkeyup = keyup;
