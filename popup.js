@@ -13,9 +13,11 @@ function searchAgainstTags(searchText){
     chrome.tabs.executeScript(null, {file:"url-scraper.js"}, function(data){
       console.log(data);
       tags = JSON.parse(data);
+
       url = tags.results[0].url;
       //url = url.replace("//","\\/\\/");
       tags = tags.results[0].result.tag.classes;
+
     });
         
     $error.text("Scanning Images....");
