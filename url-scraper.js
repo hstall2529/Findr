@@ -21,35 +21,43 @@ if($.cookie("imageTags") != undefined){
 	   }
 
 	}
-
-	function getMeta(url){
-	    $("<img/>",{
-	        load : function(){ console.log(this.width+' '+this.height); },
-	        src  : url
-	    });
-	}
+  console.log("runs");
+	// function getMeta(url){
+	//     $("<img/>",{
+	//         load : function(){ console.log(this.width+' '+this.height); },
+	//         src  : url
+	//     });
+	// }
 
 	setTimeout(function(){
 		console.log(sources);
 	}, 3000);
 	console.log("test");
 
-
-	$.ajax({
-		url: "https://api.clarifai.com/v1/tag/?url=http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg",
-		'headers': {
-			'Authorization': 'Bearer ' + authCode
-	    },
-	    type: "GET",    
-	    success: function (data) {
-	   		console.log(data);
-	      $.cookie('imageTags', JSON.stringify(data), {expires: 7});
-	      result = JSON.stringify(data);
-	    },
-	    error: function(data){
-	      console.log("AJAX error: " + data);
-	    }
-	})	
+  for (var i in imageTags) {
+    console.log(query_api(imageTags[i]));
+  }
+	
 }
 
-result
+
+
+function query_api(url) {
+
+  $.ajax({
+    url: "https://api.clarifai.com/v1/tag/?url=http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg",
+    'headers': {
+      'Authorization': 'Bearer ' + authCode
+      },
+      type: "GET",    
+      success: function (data) {
+        console.log(data);
+        $.cookie('imageTags', JSON.stringify(data));
+        result = JSON.stringify(data);
+      },
+      error: function(data){
+        console.log("AJAX error: " + data);
+      }
+  }); 
+
+}
