@@ -35,10 +35,10 @@ if($.cookie("imageTags") != undefined){
 	}, 3000);
 	console.log("test");
 
-  for (var i = 0; i < imageTags.length; i++) {
-    if (imageTags[i].clientWidth > LIMITING_SIZE && imageTags[i].clientHeight > LIMITING_SIZE) {
-      query_api(imageTags[i].src, appendResult);
-    }
+  for (var i = 0; i < sources.length; i++) {
+    
+    query_api(sources[i], appendResult);
+    
   }
 
 
