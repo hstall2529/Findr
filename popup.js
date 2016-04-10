@@ -53,10 +53,7 @@ function searchAgainstTags(searchText){
         
     $error.text("Scanning Images....");
   }else{
-  	var data = JSON.parse($.cookie("imageTags"));
-    var url = data.results[0].url;
-    $error.text(url);
-    chrome.tabs.executeScript(null,{file:"scroll.js"});
+  	$error.text(tags);
     
 }
 }
