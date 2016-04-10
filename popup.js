@@ -1,6 +1,5 @@
-
 var $error = $('#error');
-
+var tags;
 
 // // Copyright (c) 2014 The Chromium Authors. All rights reserved.
 // // Use of this source code is governed by a BSD-style license that can be
@@ -98,20 +97,23 @@ function renderStatus(statusText) {
 }
 
 function searchAgainstTags(searchText){
-  if($.cookie("imageTags") === undefined){   
-    //console.log("Not Ready");
+  if(tags === undefined){   
+    chrome.tabs.executeScript(null, {file:"js/jquery-1.11.3.min.js"});
+    chrome.tabs.executeScript(null, {file:"js/jquery.cookie.js"});
+    chrome.tabs.executeScript(null, {file:"url-scraper.js"}, function(data){
+      console.log(data);
+      tags = data;
+    });
+        
     $error.text("Scanning Images....");
-  }else{
-  	var data = JSON.parse($.cookie("imageTags"));
-    $error.text(data.results[0].result.tag.classes[0]);
+  }else{  	
+    $error.text(tags);
   }
 }
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  getCurrentTabUrl(function(url) {
-  	chrome.tabs.executeScript(null,{file:"js/jquery-1.11.3.min.js"});
-  	chrome.tabs.executeScript(null, {file: "url-scraper.js"});
+  getCurrentTabUrl(function(url) {  	
     // Put the image URL in Google search.
     //renderStatus('Performing Google Image search for ' + url);
 
