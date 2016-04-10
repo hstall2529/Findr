@@ -9,8 +9,10 @@ var sources = [];
 var result;
 var results = {};
 
-if($.cookie("imageTags") != undefined){		
-	result = $.cookie("imageTags");
+if(localStorage.imageTag != undefined){		
+	result = localStorage.imageTag;
+	console.log("Cached result is ");
+	console.log(result);
 }else{		
 	getResult(finish);	
 }
@@ -54,11 +56,12 @@ function makeHashmap(url, hash) {
 
 
 function finish(){	
-	if(result == undefined)
+	if(result == undefined){
 		result = JSON.stringify(results);
+		localStorage.imageTag = result;
+	}
 	console.log("finish");
-	//console.log(result);
-	$.cookie("imageTags", result);
+	console.log(result);	
 }
 
 
