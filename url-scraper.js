@@ -11,6 +11,8 @@ var results = {};
 
 if(localStorage.imageTag != undefined){		
 	result = localStorage.imageTag;
+	console.log("Cached result is ");
+	console.log(result);
 }else{		
 	getResult(finish);	
 }
