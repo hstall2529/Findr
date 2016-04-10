@@ -24,6 +24,18 @@ function searchAgainstTags(searchText){
       found = check;
       foundIndex = 0;      
       scrollAndHighlight(check, foundIndex);
+      
+      var parts = check[0].split("/");
+      console.log(check);
+        chrome.tabs.executeScript({
+          code: '$("html, body").animate({scrollTop : $("img").filter(function() {return this.src.match(/'+parts[parts.length-1]+"$/);}).offset().top },1000);"
+        });
+        chrome.tabs.executeScript({
+        	code:'$("img").css("border","none");'
+        });
+        chrome.tabs.executeScript({
+        	code:'$("img").filter(function(){return this.src.match(/'+parts[parts.length-1]+"$/);}).css('border','solid 10px blue');"
+        });              
     }
   }  	
 }

@@ -45,9 +45,9 @@ function getResult(){
 function makeHashmap(url, hash) {			
 	//console.log(hash);
 	for (var i = 0; i < hash.length; i++) {
-		if(results[hash[i]] === undefined)
+		if(results[hash[i].toLowerCase()] === undefined)
 			results[hash[i].toLowerCase()] = [];
-		results[hash[i]].push(url);
+		results[hash[i].toLowerCase()].push(url);
 	}  	
 
   	console.log("resulting hashmap contains:");
@@ -104,25 +104,27 @@ function make_ocr_request(url, callback) {
             console.log("the data returned from the ocr reques was");
             console.log(data);
 
-            //console.log(data);
-            var parsed_JSON = data.regions[0].lines;
-            console.log("parsed-json is this long " + parsed_JSON.length);
-            var even_more_parsed = "";
-            for (var j = 0; j < parsed_JSON.length; j++) {
+            if (data.regions[0] !== undefined){
+              //console.log(data);
+              var parsed_JSON = data.regions[0].lines;
+              console.log("parsed-json is this long " + parsed_JSON.length);
+              var even_more_parsed = "";
+              for (var j = 0; j < parsed_JSON.length; j++) {
 
-              console.log("outer loops ran");
+                console.log("outer loops ran");
 
-                for (var i = 0; i < parsed_JSON[j].words.length; i++) {
-                  console.log("each word processed was " + parsed_JSON[j].words[i].text);
-                    even_more_parsed += " " + parsed_JSON[j].words[i].text;
-                }
-             }
-            even_more_parsed = even_more_parsed.trim();
-            var arr = even_more_parsed.split(' ');
-            console.log("parsed JSON : " + even_more_parsed);
-            console.log("arr to push to hashmap : " + arr);
-            console.log("HTTP request for OCR worked");
-            callback(url, arr);
+                  for (var i = 0; i < parsed_JSON[j].words.length; i++) {
+                    console.log("each word processed was " + parsed_JSON[j].words[i].text);
+                      even_more_parsed += " " + parsed_JSON[j].words[i].text;
+                  }
+               }
+              even_more_parsed = even_more_parsed.trim();
+              var arr = even_more_parsed.split(' ');
+              console.log("parsed JSON : " + even_more_parsed);
+              console.log("arr to push to hashmap : " + arr);
+              console.log("HTTP request for OCR worked");
+              callback(url, arr);
+            }
             
 
             //var parsedata = data.
