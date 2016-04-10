@@ -6,14 +6,8 @@
     "description": "Searches the images on the current active tab based on content as well as text(if it contains any)",
     "version": "1.0",
 
-    "content_scripts": [
-        {
-          "matches": ["<all_urls>"],
-          "js": ["js/jquery-1.11.3.min.js", "js/jquery.cookie.js", "popup.js"]
-        }
-    ],
-
-    "icon": { "16": "icon16.png",
+    
+    "icons": { "16": "icon16.png",
               "48": "icon48.png",
               "148": "icon148.png"
     },
@@ -36,5 +30,12 @@
         "mac": "MacCtrl+Shift+F"
       }
     }
-  } 
+  },
+
+  "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["js/jquery-1.11.3.min.js", "js/jquery.cookie.js", "popup.js"]
+        }
+    ] 
 }
