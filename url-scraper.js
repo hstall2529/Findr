@@ -78,4 +78,28 @@ function query_api(url, callback) {
 
 }
 
+function make_ocr_request(callback) {
+  $.ajax({
+          url: "https://api.projectoxford.ai/vision/v1.0/ocr?" + "language=unk&detectOrientation=true",
+          beforeSend: function(xhrObj){
+              // Request headers
+              xhrObj.setRequestHeader("Content-Type","application/json");
+              xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","c93522f717264b48924915779428dc8c");
+             // xhrObj.setRequestHeader("Access-Control-Allow-Origin": "http://siteA.com");
+          },
+          type: "POST",
+          // Request body
+          data: "{'Url':'https://www.google.com/edu/partners/img/google-edu-partner.png'}",
+        })
+        .done(function(data) {
+            console.log(data);
+            alert("success");
+        })
+        .fail(function() {
+            alert("error");
+        });
+
+
+}
+
 result
